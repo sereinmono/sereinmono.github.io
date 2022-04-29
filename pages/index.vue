@@ -2,15 +2,15 @@
   <v-container>
     <PinnedArticleCard :title="pinned.title" :overview="pinned.overview" :image="pinned.image" :href="pinned.href"></PinnedArticleCard>
     <v-row class="pt-16">
-        <v-col sm="12" md="6">
-            <CommonArticleCard title="在UI中的崭新的材料学与设计理念" overview="谈谈当下我们需要更多地带给用户以什么样的感受" image="/blog/title_image/inspire.jpeg" />
-        </v-col>
-        <v-col sm="12" md="6">
-            <CommonArticleCard title="谈谈Windows 11" overview="令人难忘，令人难蚌" image="/Windows.jpeg" />
-        </v-col>
-        <v-col sm="12" md="6">
-            <CommonArticleCard title="HTML基础论" image="/blog/title_image/inspire.jpeg" />
-        </v-col>
+        
+       <v-col v-for="(article, i) in articleList" :key="i" sm="12" md="6">
+           <CommonArticleCard 
+            :title="article.title" 
+            :overview="article.overview" 
+            :href="article.href" 
+            :image="article.image" 
+           />
+       </v-col>
     </v-row>
   </v-container>
   <!--TODO: 完成首页的设计。-->
@@ -32,6 +32,18 @@ export default {
                 image: "/blog/title_image/inspire.jpeg",
                 border_radius: 45
             },
+            articleList: [
+                {
+                    title: "在UI中的崭新的材料学与设计理念",
+                    overview: "谈谈当下我们需要更多地带给用户以什么样的感受" ,
+                    image: "/blog/title_image/inspire.jpeg"
+                },
+                {
+                    title: "在UI中的崭新的材料学与设计理念",
+                    overview: "谈谈当下我们需要更多地带给用户以什么样的感受" ,
+                    image: "/blog/title_image/inspire.jpeg"
+                }
+            ],
         };
     },
 }

@@ -1,22 +1,24 @@
 <template>
-  <v-hover v-slot="{ hover }">
-    
-   
-    <div>
-      <v-card :elevation="hover ? 6 : 0">
-      <v-img
-      max-height="200"
-      :src="image"
-      style="border-radius: 5px"
-      class="pt-4"
-      ></v-img>
 
-    </v-card>
-    <h1 class="text-h3 pt-8 font-weight-light">{{ title }}</h1>
-    <h2 class="text-h5 pt-4 pb-4">{{ overview }}</h2>
-     
-    </div>
-  </v-hover>
+    <v-hover v-slot="{ hover }">
+      
+      <!--TODO: 添加日期显示。-->
+      <div>
+        <v-card :elevation="hover ? 6 : 0">
+        <v-img
+        max-height="200"
+        :src="image"
+        style="border-radius: 5px"
+        class="pt-4"
+        ></v-img>
+
+      </v-card>
+      <h1 class="text-h3 pt-8 font-weight-light">{{ title }}</h1>
+      <h2 class="text-h5 pt-4 pb-4">{{ overview }}</h2>
+
+      </div>
+    </v-hover>
+
 </template>
 
 <script>

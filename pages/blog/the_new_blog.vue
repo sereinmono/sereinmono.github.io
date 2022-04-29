@@ -19,10 +19,11 @@ export default {
     md() {
       return md
     }
-  }
+  },
 }
 </script>
 
+<!--
 <style>
 h1 {
   font-weight: 300;
@@ -59,4 +60,9 @@ p {
   font-weight: 300;
   padding-top: 16;
 }
+</style>
+-->
+
+<style>
+  @import '@/assets/styles/markdown_style.css';
 </style>

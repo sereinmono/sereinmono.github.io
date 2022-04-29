@@ -1,0 +1,35 @@
+h1 {
+  font-weight: 300;
+  font-size: 3.75rem;
+  padding-top: 16;
+}
+h2 {
+  font-weight: 300;
+  font-size: 3rem;
+  padding-top: 16;
+}
+h3 {
+  font-weight: 400;
+  font-size: 2.125rem;
+  padding-top: 16;
+}
+h4 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  padding-top: 16;
+}
+h5 {
+  font-weight: 500;
+  font-size: 1.25rem;
+  padding-top: 16;
+}
+h6 {
+  font-weight: 400;
+  font-size: 1rem;
+  padding-top: 16;
+}
+p {
+  font-size: 1.25rem;
+  font-weight: 300;
+  padding-top: 16;
+}
