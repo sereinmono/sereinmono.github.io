@@ -49,6 +49,7 @@ export default {
     breaks: true,
     typographer: true,
     html: false,
+    xhtmlOut: true,
     use: [
       [
         'markdown-it-anchor',
@@ -58,7 +59,7 @@ export default {
           permalink: true,
           // renderPermalink: (slug, opts, state, permalink) => {},
           permalinkClass: 'header-anchor',
-          permalinkSymbol: '¶',
+          // permalinkSymbol: '§',
           permalinkBefore: true
         }
       ],
@@ -76,7 +77,6 @@ export default {
       dark: false,
       themes: {
         dark: {
-          primary: colors.grey.darken4,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
@@ -85,7 +85,6 @@ export default {
           success: colors.green.accent3,
         },
         light: {
-          primary: colors.shades.white,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,

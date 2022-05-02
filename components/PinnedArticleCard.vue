@@ -2,7 +2,7 @@
   <v-hover v-slot="{ hover }">
       <v-row  class="pt-16" @click="$router.push(href)">
         <v-col md="6" sm="12" cols="12">
-          <v-card :elevation="hover ? 6 : 0">
+          <v-card :elevation="hover ? 6 : 3">
             <v-img
             max-height="300"
             :src="image"
@@ -11,7 +11,8 @@
           </v-card>
         </v-col>
         <v-col md="5" sm="12" cols="12">
-          <h1 class="text-h2 pt-16">{{ title }}</h1>
+          <p class="text-h6 font-weight-light pt-8"> {{ date }} </p>
+          <h1 class="text-h2 pt-4">{{ title }}</h1>
           <h2 class="text-h5 pt-8">{{ overview }}</h2>
         </v-col>
         <v-spacer />
@@ -38,6 +39,10 @@ export default {
       default: "山高月小，水落石出。"
     },
     image: {
+      type: String,
+      default: ""
+    },
+    date: {
       type: String,
       default: ""
     },
