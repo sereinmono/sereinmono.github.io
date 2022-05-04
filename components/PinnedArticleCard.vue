@@ -7,6 +7,7 @@
             max-height="300"
             :src="image"
             style="border-radius: 5px"
+            contained
             ></v-img>
           </v-card>
         </v-col>

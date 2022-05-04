@@ -2,3 +2,8 @@
 //
 // The variables you want to modify
 // $font-size-root: 20px;
+
+.theme--light.v-application code {
+  background-color: rgba(0, 0, 0, 0);
+  color: currentColor;
+}

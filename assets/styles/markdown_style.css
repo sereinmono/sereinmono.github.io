@@ -36,3 +36,6 @@ p {
 blockquote {
   padding-left: 30px;
 }
+.my-code {
+  background-color: rgba(0, 0, 0, 0);
+}

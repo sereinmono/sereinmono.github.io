@@ -19,6 +19,12 @@ export default {
               overview: "讲讲我和刷机的那些事儿。",
               href: "/blog/something_about_phone_flashing",
               date: "2021.08.11"
+            },
+            {
+              title: "AC Activator 开发记录（一）",
+              overview: "如何构建一个引人入胜、易于使用的现代化界面。",
+              href: "/blog/building_ac_activator",
+              date: "2022.05.04"
             }
           ]
         };

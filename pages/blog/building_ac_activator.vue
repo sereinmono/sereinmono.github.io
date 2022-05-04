@@ -1,17 +1,15 @@
 <template>
-  <v-row>
-    <v-col lg="8" cols="12">
+  <v-container>
       <div class="pt-16"></div>
       <div class="pt-16"></div>
       <div class="pt-16"></div>
+      <p class="font-weight-thin text-h5">2022.05.04</p>
       <div v-html="md" />
-    </v-col>
-    <v-col lg="4" cols="0" />
-  </v-row>
+  </v-container>
 </template>
 
 <script>
-import md from '../../content/blog/hello.md'
+import md from '../../content/blog/building_ac_activator.md'
 export default {
   name: 'IndexPage',
   computed: {

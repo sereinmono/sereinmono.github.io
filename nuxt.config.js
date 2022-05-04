@@ -40,7 +40,8 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/markdownit',
-    '@nuxt/content'
+    '@nuxt/content',
+    'nuxt-highlightjs',
   ],
 
   markdownit: {
