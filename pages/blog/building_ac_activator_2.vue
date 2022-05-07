@@ -3,7 +3,7 @@
       <div class="pt-16"></div>
       <div class="pt-16"></div>
       <div class="pt-16"></div>
-      <p class="font-weight-thin text-h5">2022.05.04</p>
+      <p class="font-weight-thin text-h5">2022.05.06</p>
       <div v-html="md" />
   </v-container>
 </template>
