@@ -15,6 +15,12 @@ export default {
         return {
           articles: [
             {
+              title: "AC Activator 开发记录（三）",
+              overview: "我们来实现这个应用的心脏——实现激活程序，并构建一个可供用户的『黑箱』。",
+              href: "/blog/building_ac_activator_3",
+              date: "2022.05.10"
+            },
+            {
               title: "AC Activator 开发记录（二）",
               overview: "实现设置页面。",
               href: "/blog/building_ac_activator_2",
