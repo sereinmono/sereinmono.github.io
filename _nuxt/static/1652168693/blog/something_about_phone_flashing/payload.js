@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/blog/something_about_phone_flashing", {data:[{}],fetch:{},mutations:void 0});
