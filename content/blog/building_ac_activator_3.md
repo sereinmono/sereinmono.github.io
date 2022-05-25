@@ -122,7 +122,7 @@ namespace ACActivator
 }
 ```
 
-在 Activator.cs 中定义了一个静态类 `Activator`，这个类用来实现激活的功能。外部程序调用 `Activate()` 来执行激活。在函数 `Activate()` 中，我们创建 activate.bat 和 launcher.vbs。然后，运行 `RunActivate()`，创建一个 PowerShell 的子进程来执行 launcher.vbs。在这之中将 `process.StartInfo.UseShellExcute` 禁用，是因为已经确切了我们要运行什么程序，且清楚运行的是一个程序。将 `process.StartInfo.CreateNoWindow` 禁用。是因为我们不想要 PowerShell 创建它的窗口——刚才我们已经提到要对用户塑造一个『黑箱』。
+在 Activator.cs 中定义了一个静态类 `Activator`，这个类用来实现激活的功能。外部程序调用 `Activate()` 来执行激活。在函数 `Activate()` 中，我们创建 activate.bat 和 launcher.vbs。然后，运行 `RunActivate()`，创建一个 PowerShell 的子进程来执行 launcher.vbs。在这之中将 `process.StartInfo.UseShellExcute` 禁用，是因为已经确切了我们要运行什么程序，且清楚运行的是一个程序。将 `process.StartInfo.CreateNoWindow` 启用。是因为我们不想要 PowerShell 创建它的窗口——刚才我们已经提到要对用户塑造一个『黑箱』。
 
 ## 主页
 
