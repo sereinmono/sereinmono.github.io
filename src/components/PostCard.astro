@@ -1,0 +1,189 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: string;
+  slug: string;
+  tags?: string[];
+  image?: string;
+  size?: 'small' | 'medium' | 'large';
+}
+
+const {
+  title,
+  description,
+  date,
+  slug,
+  tags = [],
+  image,
+  size = 'small'
+} = Astro.props;
+
+const formattedDate = new Date(date).toLocaleDateString('zh-CN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<article class:list={['post-card', `post-card--${size}`, 'nb-card']}>
+  <a href={`/blog/${slug}/`} class="card-link">
+    {image && (
+      <div class="card-image">
+        <img src={image} alt={title} loading="lazy" />
+      </div>
+    )}
+
+    <div class="card-content">
+      <div class="card-meta">
+        <time datetime={date} class="pixel-text card-date">{formattedDate}</time>
+        {tags.length > 0 && (
+          <div class="card-tags">
+            {tags.slice(0, 2).map(tag => (
+              <span class="nb-tag">{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <h3 class="card-title">{title}</h3>
+
+      <p class="card-desc">{description}</p>
+
+      <div class="card-footer">
+        <span class="pixel-text read-more">阅读全文 →</span>
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  .post-card {
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card-link {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    border: none;
+  }
+
+  .card-image {
+    width: 100%;
+    overflow: hidden;
+    border-bottom: var(--border-normal) solid var(--color-border);
+  }
+
+  .card-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .post-card:hover .card-image img {
+    transform: scale(1.02);
+  }
+
+  .card-content {
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: var(--spacing-xs);
+  }
+
+  .card-date {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .card-tags {
+    display: flex;
+    gap: 6px;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+    color: var(--color-text-primary);
+  }
+
+  .card-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    margin-top: var(--spacing-sm);
+    padding-top: var(--spacing-xs);
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .read-more {
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    transition: color 0.15s ease;
+  }
+
+  .post-card:hover .read-more {
+    color: var(--color-accent-hover);
+  }
+
+  /* 尺寸变体 */
+  .post-card--small .card-title {
+    font-size: 1.1rem;
+  }
+
+  .post-card--small .card-content {
+    padding: var(--spacing-sm);
+  }
+
+  .post-card--medium .card-title {
+    font-size: 1.4rem;
+  }
+
+  .post-card--large {
+    grid-column: span 2;
+  }
+
+  .post-card--large .card-title {
+    font-size: 1.8rem;
+  }
+
+  .post-card--large .card-content {
+    padding: var(--spacing-lg);
+  }
+
+  .post-card--large .card-desc {
+    -webkit-line-clamp: 4;
+  }
+
+  @media (max-width: 768px) {
+    .post-card--large {
+      grid-column: span 1;
+    }
+
+    .post-card--large .card-title {
+      font-size: 1.4rem;
+    }
+  }
+</style>

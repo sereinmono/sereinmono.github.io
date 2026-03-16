@@ -1,0 +1,272 @@
+/* ===================================
+   像素风格样式
+   用于图标、按钮等装饰性元素
+   =================================== */
+
+/* 像素字体基础 */
+.pixel-text {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* 像素按钮 */
+.pixel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  font-family: var(--font-pixel);
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
+  border: var(--border-normal) solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  text-decoration: none;
+  image-rendering: pixelated;
+}
+
+.pixel-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--color-border);
+  background-color: var(--color-accent-hover);
+}
+
+.pixel-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--color-border);
+}
+
+/* 像素按钮变体 */
+.pixel-btn-outline {
+  background-color: transparent;
+  color: var(--color-text-primary);
+}
+
+.pixel-btn-outline:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+/* 像素图标容器 */
+.pixel-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.pixel-icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.pixel-icon-lg {
+  width: 32px;
+  height: 32px;
+}
+
+/* 像素分隔符 */
+.pixel-divider {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: var(--spacing-md) 0;
+}
+
+.pixel-divider-dot {
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-border);
+}
+
+.pixel-divider-line {
+  flex: 1;
+  height: 2px;
+  background-color: var(--color-border);
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-border) 0,
+    var(--color-border) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* 像素标签 */
+.pixel-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  font-family: var(--font-pixel);
+  font-size: 0.9rem;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  position: relative;
+}
+
+.pixel-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-accent);
+}
+
+/* 像素装饰框 */
+.pixel-border {
+  position: relative;
+  border: 2px solid var(--color-border);
+  padding: var(--spacing-sm);
+}
+
+.pixel-border::before,
+.pixel-border::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--color-border);
+}
+
+.pixel-border::before {
+  top: -4px;
+  left: -4px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.pixel-border::after {
+  bottom: -4px;
+  right: -4px;
+  border-left: none;
+  border-top: none;
+}
+
+/* 像素加载动画 */
+@keyframes pixel-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.pixel-blink {
+  animation: pixel-blink 1s step-end infinite;
+}
+
+/* 像素光标效果 */
+.pixel-cursor {
+  cursor: crosshair;
+}
+
+/* 像素进度条 */
+.pixel-progress {
+  height: 8px;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.pixel-progress-bar {
+  height: 100%;
+  background-color: var(--color-accent);
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-accent) 0,
+    var(--color-accent) 4px,
+    var(--color-accent-light) 4px,
+    var(--color-accent-light) 8px
+  );
+}
+
+/* 像素列表标记 */
+.pixel-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.pixel-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pixel-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-accent);
+  border: 1px solid var(--color-border);
+}
+
+/* 像素计数器 */
+.pixel-counter {
+  font-family: var(--font-pixel);
+  font-size: 1.2rem;
+  padding: 4px 12px;
+  background-color: var(--color-text-primary);
+  color: var(--color-bg-primary);
+  border: 2px solid var(--color-border);
+  display: inline-block;
+}
+
+/* 像素角标 */
+.pixel-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-accent);
+  border: 1px solid var(--color-border);
+}
+
+.pixel-corner-tl {
+  top: 0;
+  left: 0;
+}
+
+.pixel-corner-tr {
+  top: 0;
+  right: 0;
+}
+
+.pixel-corner-bl {
+  bottom: 0;
+  left: 0;
+}
+
+.pixel-corner-br {
+  bottom: 0;
+  right: 0;
+}
+
+/* 像素滚动指示器 */
+.pixel-scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.pixel-scroll-indicator-arrow {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--color-border);
+  animation: pixel-bounce 1s ease-in-out infinite;
+}
+
+@keyframes pixel-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}

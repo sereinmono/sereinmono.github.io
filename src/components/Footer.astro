@@ -1,0 +1,147 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-left">
+      <span class="pixel-text footer-title">matchafrenchfriesblog</span>
+      <p class="footer-desc">Here come the crazy ones.</p>
+    </div>
+
+    <!-- 
+    <div class="footer-divider">
+      <span class="divider-char">◆</span>
+    </div>-->
+
+    <div class="footer-right">
+      <div class="pixel-counter">
+        <span class="counter-label">©</span>
+        <span class="counter-value">{currentYear}</span>
+      </div>
+      <p class="footer-tech">
+        <span class="pixel-tag">Astro</span>
+        <span class="pixel-tag">Neo-Brutalism</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="pixel-decoration">
+      <span>■</span>
+      <span>□</span>
+      <span>■</span>
+      <span>□</span>
+      <span>■</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: var(--border-normal) solid var(--color-border);
+    background-color: var(--color-bg-secondary);
+    margin-top: var(--spacing-2xl);
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+  }
+
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .footer-title {
+    font-size: 1rem;
+    color: var(--color-text-primary);
+  }
+
+  .footer-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .footer-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .divider-char {
+    font-size: 1.2rem;
+    color: var(--color-accent);
+  }
+
+  .footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-xs);
+  }
+
+  .pixel-counter {
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    padding: 4px 12px;
+    background-color: var(--color-text-primary);
+    color: var(--color-bg-primary);
+    border: 2px solid var(--color-border);
+  }
+
+  .footer-tech {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin: 0;
+  }
+
+  .pixel-tag {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    background-color: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    position: relative;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--color-border-light);
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+
+  .pixel-decoration {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.6rem;
+    color: var(--color-text-muted);
+    letter-spacing: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+      padding: var(--spacing-md);
+    }
+
+    .footer-right {
+      align-items: center;
+    }
+
+    .footer-divider {
+      display: none;
+    }
+  }
+</style>

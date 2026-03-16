@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+// 获取所有博客文章
+let posts: any[] = [];
+try {
+  const blogEntries = await getCollection('blog');
+  posts = blogEntries
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    .map(entry => ({
+      slug: entry.slug,
+      ...entry.data
+    }));
+} catch {
+  // 如果内容集合不存在，使用示例数据
+  posts = [
+    {
+      slug: 'welcome',
+      title: '欢迎来到 matchafrenchfriesblog',
+      description: '这是一个采用 Neo-Brutalism 风格的静态博客，融合了 90 年代网页美学与现代设计感。',
+      date: '2026-03-16',
+      tags: ['博客', '介绍'],
+      image: '/images/sample-1.jpg'
+    },
+    {
+      slug: 'neo-brutalism-design',
+      title: 'Neo-Brutalism 设计风格探索',
+      description: '探讨 Neo-Brutalism 设计风格的特点、历史渊源及其在现代网页设计中的应用。',
+      date: '2026-03-15',
+      tags: ['设计', '前端'],
+      image: '/images/sample-2.jpg'
+    },
+    {
+      slug: 'astro-framework',
+      title: 'Astro 框架入门指南',
+      description: 'Astro 是一个现代化的静态站点生成器，适合构建内容驱动的网站。',
+      date: '2026-03-14',
+      tags: ['技术', '前端'],
+      image: '/images/sample-3.jpg'
+    }
+  ];
+}
+
+// 为文章分配不同尺寸
+const getPostSize = (index: number) => {
+  if (index === 0) return 'large';
+  if (index % 3 === 0) return 'medium';
+  return 'small';
+};
+---
+
+<BaseLayout title="博客">
+  <section class="blog-header">
+    <div class="header-content">
+      <span class="pixel-counter">BLOG</span>
+      <h1>博客文章</h1>
+      <p class="blog-count">共 {posts.length} 篇文章</p>
+    </div>
+
+    <div class="pixel-divider">
+      <span class="divider-line"></span>
+      <span class="divider-char">◆</span>
+      <span class="divider-line"></span>
+    </div>
+  </section>
+
+  <section class="blog-grid">
+    {posts.map((post, index) => (
+      <PostCard
+        title={post.title}
+        description={post.description}
+        date={post.date}
+        slug={post.slug}
+        tags={post.tags}
+        image={post.image}
+        size={getPostSize(index)}
+      />
+    ))}
+  </section>
+
+  {posts.length === 0 && (
+    <section class="empty-state">
+      <div class="nb-card empty-card">
+        <span class="pixel-text">暂无文章</span>
+        <p>敬请期待...</p>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .blog-header {
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+  }
+
+  .header-content h1 {
+    font-size: 2.5rem;
+    margin: var(--spacing-sm) 0;
+  }
+
+  .pixel-counter {
+    font-family: var(--font-pixel);
+    font-size: 0.9rem;
+    padding: 4px 16px;
+    background-color: var(--color-accent);
+    color: var(--color-bg-primary);
+    border: 2px solid var(--color-border);
+    display: inline-block;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .blog-count {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  .pixel-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+  }
+
+  .divider-line {
+    width: 80px;
+    height: 2px;
+    background-color: var(--color-border);
+  }
+
+  .divider-char {
+    color: var(--color-accent);
+  }
+
+  /* 不对称网格布局 */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg) 0;
+  }
+
+  /* 让大卡片占据两列 */
+  .blog-grid :global(.post-card--large) {
+    grid-column: span 2;
+  }
+
+  .blog-grid :global(.post-card--medium) {
+    grid-column: span 2;
+  }
+
+  /* 空状态 */
+  .empty-state {
+    padding: var(--spacing-2xl) 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .empty-card {
+    padding: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .empty-card .pixel-text {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .empty-card p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* 响应式 */
+  @media (max-width: 900px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .blog-grid :global(.post-card--large) {
+      grid-column: span 2;
+    }
+
+    .blog-grid :global(.post-card--medium) {
+      grid-column: span 1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .blog-grid :global(.post-card--large),
+    .blog-grid :global(.post-card--medium) {
+      grid-column: span 1;
+    }
+
+    .header-content h1 {
+      font-size: 2rem;
+    }
+  }
+</style>

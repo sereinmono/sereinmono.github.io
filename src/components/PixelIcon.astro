@@ -1,0 +1,101 @@
+---
+interface Props {
+  name: 'arrow' | 'tag' | 'calendar' | 'clock' | 'folder' | 'link' | 'email' | 'github';
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { name, size = 'md' } = Astro.props;
+
+const sizeMap = {
+  sm: 12,
+  md: 16,
+  lg: 24
+};
+
+const pixelSize = sizeMap[size];
+
+// 简单的像素图标 SVG
+const icons: Record<string, string> = {
+  arrow: `
+    <svg width="${pixelSize}" height="${pixelSize}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 2L14 8L8 14" stroke="currentColor" stroke-width="2"/>
+      <path d="M14 8H2" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  `,
+  tag: `
+    <svg width="${pixelSize}" height="${pixelSize}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="12" height="12" stroke="currentColor" stroke-width="2"/>
+      <rect x="4" y="4" width="4" height="4" fill="currentColor"/>
+    </svg>
+  `,
+  calendar: `
+    <svg width="${pixelSize}" height="${pixelSize}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="4" width="12" height="10" stroke="currentColor" stroke-width="2"/>
+      <path d="M2 7H14" stroke="currentColor" stroke-width="2"/>
+      <path d="M5 2V4" stroke="currentColor" stroke-width="2"/>
+      <path d="M11 2V4" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  `,
+  clock: `
+    <svg width="${pixelSize}" height="${pixelSize}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/>
+      <path d="M8 4V8L11 10" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  `,
+  folder: `
+    <svg width="${pixelSize}" height="${pixelSize}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 4V12H14V6H8L6 4H2Z" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  `,
+  link: `
+    <svg width="${pixelSize}" height="${pixelSize}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 10L10 6" stroke="currentColor" stroke-width="2"/>
+      <path d="M8 3L10 5L13 2L11 0" stroke="currentColor" stroke-width="2"/>
+      <path d="M8 13L6 11L3 14L5 16" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  `,
+  email: `
+    <svg width="${pixelSize}" height="${pixelSize}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="4" width="12" height="8" stroke="currentColor" stroke-width="2"/>
+      <path d="M2 4L8 9L14 4" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  `,
+  github: `
+    <svg width="${pixelSize}" height="${pixelSize}" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 1C4 1 1 4.5 1 8.5C1 11.5 3 14 5.5 15C5.8 15 6 14.8 6 14.5V13C4 13.3 3.5 12.5 3.5 12.5C3 11.5 2.5 11 2.5 11C1.8 10.5 2.5 10.5 2.5 10.5C3.5 10.5 4 11.5 4 11.5C4.8 13 6.5 12.5 6.5 12C6.5 11.5 6.8 11 7 10.8C5.3 10.5 3.5 9.8 3.5 7.3C3.5 6.5 3.8 5.8 4 5.5C4 5 3.8 4 4 3.5C4 3.5 4.8 3.3 6 4.3C6.5 4 7.5 4 8 4C8.5 4 9.5 4 10 4.3C11.2 3.3 12 3.5 12 3.5C12.2 4 12 5 12 5.5C12.3 5.8 12.5 6.5 12.5 7.3C12.5 9.8 10.7 10.5 9 10.8C9.2 11 9.5 11.5 9.5 12V14.5C9.5 14.8 9.7 15 10 15C12.5 14 14.5 11.5 14.5 8.5C15 4.5 12 1 8 1Z" fill="currentColor"/>
+    </svg>
+  `
+};
+---
+
+<span class:list={['pixel-icon', `pixel-icon--${size}`]} set:html={icons[name]}></span>
+
+<style>
+  .pixel-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    color: currentColor;
+  }
+
+  .pixel-icon svg {
+    display: block;
+  }
+
+  .pixel-icon--sm {
+    width: 12px;
+    height: 12px;
+  }
+
+  .pixel-icon--md {
+    width: 16px;
+    height: 16px;
+  }
+
+  .pixel-icon--lg {
+    width: 24px;
+    height: 24px;
+  }
+</style>

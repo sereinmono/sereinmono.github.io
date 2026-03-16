@@ -1,0 +1,435 @@
+---
+/**
+ * ThemeToggle 组件
+ * 支持三种模式：light、dark、auto（跟随系统）
+ * 使用 localStorage 存储用户偏好
+ * 像素风格图标
+ */
+---
+
+<div class="theme-toggle" id="theme-toggle" data-current-theme="auto">
+  <button
+    id="theme-toggle-btn"
+    class="theme-toggle-btn"
+    aria-label="切换主题"
+    title="切换日间/夜间模式"
+  >
+    <!-- 日间模式图标 - 像素风格太阳 -->
+    <span class="theme-icon theme-icon-light">
+      <svg class="pixel-icon-svg" viewBox="0 0 16 16" fill="currentColor">
+        <!-- 太阳中心 -->
+        <rect x="5" y="5" width="6" height="6" />
+        <!-- 上方光线 -->
+        <rect x="7" y="1" width="2" height="2" />
+        <!-- 下方光线 -->
+        <rect x="7" y="13" width="2" height="2" />
+        <!-- 左方光线 -->
+        <rect x="1" y="7" width="2" height="2" />
+        <!-- 右方光线 -->
+        <rect x="13" y="7" width="2" height="2" />
+        <!-- 左上光线 -->
+        <rect x="3" y="3" width="2" height="2" />
+        <!-- 右上光线 -->
+        <rect x="11" y="3" width="2" height="2" />
+        <!-- 左下光线 -->
+        <rect x="3" y="11" width="2" height="2" />
+        <!-- 右下光线 -->
+        <rect x="11" y="11" width="2" height="2" />
+      </svg>
+    </span>
+    <!-- 夜间模式图标 - 像素风格四角星 -->
+    <span class="theme-icon theme-icon-dark">
+      <svg class="pixel-icon-svg" viewBox="0 0 16 16" fill="currentColor">
+        <!-- 四角星 -->
+        <rect x="7" y="1" width="2" height="2" />
+        <rect x="7" y="13" width="2" height="2" />
+        <rect x="1" y="7" width="2" height="2" />
+        <rect x="13" y="7" width="2" height="2" />
+        <rect x="5" y="5" width="2" height="2" />
+        <rect x="9" y="5" width="2" height="2" />
+        <rect x="5" y="9" width="2" height="2" />
+        <rect x="9" y="9" width="2" height="2" />
+        <rect x="7" y="4" width="2" height="1" />
+        <rect x="7" y="11" width="2" height="1" />
+        <rect x="4" y="7" width="1" height="2" />
+        <rect x="11" y="7" width="1" height="2" />
+        <rect x="7" y="7" width="2" height="2" />
+      </svg>
+    </span>
+    <!-- 自动模式图标 - 像素风格显示器 -->
+    <span class="theme-icon theme-icon-auto">
+      <svg class="pixel-icon-svg" viewBox="0 0 16 16" fill="currentColor">
+        <!-- 显示器屏幕 -->
+        <rect x="1" y="2" width="14" height="10" />
+        <!-- 支架 -->
+        <rect x="6" y="12" width="4" height="2" />
+        <!-- 底座 -->
+        <rect x="4" y="14" width="8" height="2" />
+      </svg>
+    </span>
+  </button>
+
+  <div class="theme-menu" id="theme-menu">
+    <button class="theme-option" data-theme="light">
+      <span class="theme-option-icon">
+        <svg class="pixel-icon-svg-sm" viewBox="0 0 16 16" fill="currentColor">
+          <rect x="5" y="5" width="6" height="6" />
+          <rect x="7" y="1" width="2" height="2" />
+          <rect x="7" y="13" width="2" height="2" />
+          <rect x="1" y="7" width="2" height="2" />
+          <rect x="13" y="7" width="2" height="2" />
+          <rect x="3" y="3" width="2" height="2" />
+          <rect x="11" y="3" width="2" height="2" />
+          <rect x="3" y="11" width="2" height="2" />
+          <rect x="11" y="11" width="2" height="2" />
+        </svg>
+      </span>
+      <span class="theme-option-label">日间模式</span>
+    </button>
+    <button class="theme-option" data-theme="dark">
+      <span class="theme-option-icon">
+        <svg class="pixel-icon-svg-sm" viewBox="0 0 16 16" fill="currentColor">
+          <!-- 四角星 -->
+          <rect x="7" y="1" width="2" height="2" />
+          <rect x="7" y="13" width="2" height="2" />
+          <rect x="1" y="7" width="2" height="2" />
+          <rect x="13" y="7" width="2" height="2" />
+          <rect x="5" y="5" width="2" height="2" />
+          <rect x="9" y="5" width="2" height="2" />
+          <rect x="5" y="9" width="2" height="2" />
+          <rect x="9" y="9" width="2" height="2" />
+          <rect x="7" y="4" width="2" height="1" />
+          <rect x="7" y="11" width="2" height="1" />
+          <rect x="4" y="7" width="1" height="2" />
+          <rect x="11" y="7" width="1" height="2" />
+          <rect x="7" y="7" width="2" height="2" />
+        </svg>
+      </span>
+      <span class="theme-option-label">夜间模式</span>
+    </button>
+    <button class="theme-option" data-theme="auto">
+      <span class="theme-option-icon">
+        <svg class="pixel-icon-svg-sm" viewBox="0 0 16 16" fill="currentColor">
+          <rect x="1" y="2" width="14" height="10" />
+          <rect x="6" y="12" width="4" height="2" />
+          <rect x="4" y="14" width="8" height="2" />
+        </svg>
+      </span>
+      <span class="theme-option-label">自动跟随</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .theme-toggle {
+    position: relative;
+  }
+
+  .theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease;
+    image-rendering: pixelated;
+  }
+
+  /* 日间模式下按钮样式 */
+  :global(:root:not([data-theme="dark"])) .theme-toggle-btn {
+    color: #1A1A1A;
+    background-color: #F0EDE8;
+    border: 2px solid #1A1A1A;
+  }
+
+  :global(:root:not([data-theme="dark"])) .theme-toggle-btn svg {
+    fill: #1A1A1A;
+  }
+
+  :global(:root:not([data-theme="dark"])) .theme-toggle-btn:hover {
+    box-shadow: 2px 2px 0 #1A1A1A;
+  }
+
+  /* 夜间模式下按钮样式 */
+  :global(:root[data-theme="dark"]) .theme-toggle-btn {
+    color: #E8E5E0;
+    background-color: #252525;
+    border: 2px solid #E8E5E0;
+  }
+
+  :global(:root[data-theme="dark"]) .theme-toggle-btn svg {
+    fill: #E8E5E0;
+  }
+
+  :global(:root[data-theme="dark"]) .theme-toggle-btn:hover {
+    box-shadow: 2px 2px 0 #E8E5E0;
+  }
+
+  .theme-toggle-btn:hover {
+    transform: translate(-1px, -1px);
+  }
+
+  .theme-toggle-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+  }
+
+  .pixel-icon-svg {
+    width: 18px;
+    height: 18px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  .pixel-icon-svg-sm {
+    width: 16px;
+    height: 16px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  .theme-icon {
+    display: none;
+  }
+
+  /* 日间模式显示太阳 */
+  .theme-toggle[data-current-theme="light"] .theme-icon-light {
+    display: block;
+  }
+
+  .theme-toggle[data-current-theme="light"] .theme-icon-dark,
+  .theme-toggle[data-current-theme="light"] .theme-icon-auto {
+    display: none;
+  }
+
+  /* 夜间模式显示四角星 */
+  .theme-toggle[data-current-theme="dark"] .theme-icon-dark {
+    display: block;
+  }
+
+  .theme-toggle[data-current-theme="dark"] .theme-icon-light,
+  .theme-toggle[data-current-theme="dark"] .theme-icon-auto {
+    display: none;
+  }
+
+  /* 自动模式显示显示器 */
+  .theme-toggle[data-current-theme="auto"] .theme-icon-auto {
+    display: block;
+  }
+
+  .theme-toggle[data-current-theme="auto"] .theme-icon-light,
+  .theme-toggle[data-current-theme="auto"] .theme-icon-dark {
+    display: none;
+  }
+
+  /* 下拉菜单 */
+  .theme-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 140px;
+    border: var(--border-normal) solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 200;
+  }
+
+  /* 日间模式菜单背景 */
+  :global(:root:not([data-theme="dark"])) .theme-menu {
+    background-color: #FAF8F5;
+    border-color: #1A1A1A;
+  }
+
+  /* 夜间模式菜单背景 */
+  :global(:root[data-theme="dark"]) .theme-menu {
+    background-color: #1A1A1A;
+    border-color: #E8E5E0;
+  }
+
+  .theme-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .theme-option {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    width: 100%;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: none;
+    border: none;
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    text-align: left;
+  }
+
+  /* 日间模式下使用深色文字 */
+  :global(:root:not([data-theme="dark"])) .theme-option {
+    color: #1A1A1A;
+  }
+
+  :global(:root:not([data-theme="dark"])) .theme-option-icon svg {
+    fill: #1A1A1A;
+  }
+
+  /* 夜间模式下使用浅色文字 */
+  :global(:root[data-theme="dark"]) .theme-option {
+    color: #E8E5E0;
+  }
+
+  :global(:root[data-theme="dark"]) .theme-option-icon svg {
+    fill: #E8E5E0;
+  }
+
+  .theme-option:hover {
+    background-color: var(--color-bg-secondary);
+  }
+
+  /* 日间模式 hover 背景色 */
+  :global(:root:not([data-theme="dark"])) .theme-option:hover {
+    background-color: #F0EDE8;
+  }
+
+  /* 夜间模式 hover 背景色 */
+  :global(:root[data-theme="dark"]) .theme-option:hover {
+    background-color: #252525;
+  }
+
+  .theme-option.active {
+    background-color: var(--color-accent);
+    color: var(--color-bg-primary);
+  }
+
+  /* 日间模式 active 状态 */
+  :global(:root:not([data-theme="dark"])) .theme-option.active {
+    background-color: #8B1A1A;
+    color: #FAF8F5;
+  }
+
+  :global(:root:not([data-theme="dark"])) .theme-option.active svg {
+    fill: #FAF8F5;
+  }
+
+  /* 夜间模式 active 状态 */
+  :global(:root[data-theme="dark"]) .theme-option.active {
+    background-color: #C45050;
+    color: #1A1A1A;
+  }
+
+  :global(:root[data-theme="dark"]) .theme-option.active svg {
+    fill: #1A1A1A;
+  }
+
+  .theme-option-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .theme-toggle-btn {
+      width: 32px;
+      height: 32px;
+    }
+
+    .theme-menu {
+      right: -8px;
+    }
+  }
+</style>
+
+<script>
+  // 主题管理
+  const THEME_KEY = 'theme-preference';
+  const themes = ['light', 'dark', 'auto'] as const;
+  type Theme = typeof themes[number];
+
+  const toggleContainer = document.getElementById('theme-toggle');
+  const toggleBtn = document.getElementById('theme-toggle-btn');
+  const menu = document.getElementById('theme-menu');
+  const options = document.querySelectorAll<HTMLButtonElement>('.theme-option');
+
+  // 获取存储的主题偏好
+  function getStoredTheme(): Theme {
+    const stored = localStorage.getItem(THEME_KEY);
+    if (stored && themes.includes(stored as Theme)) {
+      return stored as Theme;
+    }
+    return 'auto';
+  }
+
+  // 应用主题
+  function applyTheme(theme: Theme) {
+    const root = document.documentElement;
+
+    // 更新容器属性，用于显示对应图标（先更新这个）
+    toggleContainer?.setAttribute('data-current-theme', theme);
+
+    if (theme === 'auto') {
+      root.removeAttribute('data-theme');
+      root.setAttribute('data-user-theme', 'auto');
+    } else {
+      root.setAttribute('data-theme', theme);
+      root.removeAttribute('data-user-theme');
+    }
+
+    // 更新菜单选项的激活状态
+    options.forEach(opt => {
+      opt.classList.toggle('active', opt.dataset.theme === theme);
+    });
+  }
+
+  // 切换菜单显示
+  function toggleMenu() {
+    menu?.classList.toggle('open');
+  }
+
+  // 关闭菜单
+  function closeMenu() {
+    menu?.classList.remove('open');
+  }
+
+  // 事件绑定
+  toggleBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const theme = opt.dataset.theme as Theme;
+      localStorage.setItem(THEME_KEY, theme);
+      applyTheme(theme);
+      closeMenu();
+    });
+  });
+
+  // 点击外部关闭菜单
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.theme-toggle')) {
+      closeMenu();
+    }
+  });
+
+  // 监听系统主题变化（仅在 auto 模式下生效）
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  mediaQuery.addEventListener('change', () => {
+    if (getStoredTheme() === 'auto') {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  });
+
+  // 初始化 - 立即执行
+  const initialTheme = getStoredTheme();
+  applyTheme(initialTheme);
+</script>

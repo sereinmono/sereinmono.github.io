@@ -1,0 +1,296 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PixelButton from '../components/PixelButton.astro';
+---
+
+<BaseLayout title="关于">
+  <article class="about-page">
+    <header class="page-header">
+      <span class="pixel-counter">ABOUT</span>
+      <h1>关于</h1>
+    </header>
+
+    <section class="about-content">
+      <div class="about-intro nb-card">
+        <div class="intro-text">
+          <h2>matchafrenchfriesblog</h2>
+          <p class="tagline">克制怀旧的 Neo-Brutalism 博客</p>
+        </div>
+
+        <div class="pixel-decoration">
+          <span>■</span>
+          <span>□</span>
+          <span>■</span>
+        </div>
+      </div>
+
+      <section class="about-section">
+        <h3>
+          <span class="pixel-counter">01</span>
+          关于这个博客
+        </h3>
+        <p>
+          这是一个采用 Astro 框架构建的静态博客，设计风格融合了 Neo-Brutalism 与 90 年代网页美学。
+          通过克制的色彩和直角设计，营造出一种怀旧的温暖感。
+        </p>
+        <p>
+          博客采用米白浅灰作为主色调，深红作为点缀色，
+          在保持现代感的同时，向早期互联网设计致敬。
+        </p>
+      </section>
+
+      <section class="about-section">
+        <h3>
+          <span class="pixel-counter">02</span>
+          设计理念
+        </h3>
+        <ul class="pixel-list">
+          <li><strong>克制的 Neo-Brutalism</strong> - 保留直角边框和明显边框线，但不使用歪斜元素</li>
+          <li><strong>怀旧的色彩</strong> - 米白浅灰主调，深红点缀，营造温暖的氛围</li>
+          <li><strong>衬线字体</strong> - 传递人文精神和文化元素</li>
+          <li><strong>大片留白</strong> - 首页设计强调空间感，不追求信息堆砌</li>
+
+        </ul>
+      </section>
+
+      <!-- 
+      <section class="about-section">
+        <h3>
+          <span class="pixel-counter">03</span>
+          技术栈
+        </h3>
+        <div class="tech-grid">
+          <div class="tech-item nb-card">
+            <span class="pixel-tag">框架</span>
+            <span class="tech-name">Astro</span>
+          </div>
+          <div class="tech-item nb-card">
+            <span class="pixel-tag">样式</span>
+            <span class="tech-name">CSS Variables</span>
+          </div>
+          <div class="tech-item nb-card">
+            <span class="pixel-tag">部署</span>
+            <span class="tech-name">GitHub Pages</span>
+          </div>
+          <div class="tech-item nb-card">
+            <span class="pixel-tag">字体</span>
+            <span class="tech-name">Noto Serif</span>
+          </div>
+        </div>
+      </section>-->
+
+      <section class="about-section">
+        <h3>
+          <span class="pixel-counter">03</span>
+          联系方式
+        </h3>
+        <div class="contact-links">
+          <PixelButton href="https://github.com/sereinmono" variant="outline" external>
+            GitHub
+          </PixelButton>
+          <PixelButton href="mailto:sereinsu@outlook.com" variant="outline">
+            Email
+          </PixelButton>
+        </div>
+      </section>
+    </section>
+
+    <footer class="page-footer">
+      <div class="pixel-divider">
+        <span class="divider-line"></span>
+        <span class="divider-char">◆</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <div class="pixel-decoration-bottom">
+        <span>□</span>
+        <span>■</span>
+        <span>□</span>
+        <span>■</span>
+        <span>□</span>
+      </div>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .about-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* 页面头部 */
+  .page-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-top: var(--spacing-sm);
+  }
+
+  .pixel-counter {
+    font-family: var(--font-pixel);
+    font-size: 0.9rem;
+    padding: 4px 16px;
+    background-color: var(--color-accent);
+    color: var(--color-bg-primary);
+    border: 2px solid var(--color-border);
+    display: inline-block;
+  }
+
+  /* 介绍区域 */
+  .about-intro {
+    padding: var(--spacing-xl);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .about-intro h2 {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .tagline {
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+  }
+
+  .pixel-decoration {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: var(--spacing-md);
+    font-size: 0.8rem;
+    color: var(--color-accent);
+  }
+
+  /* 内容区域 */
+  .about-section {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .about-section h3 {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .about-section p {
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  /* 像素列表 */
+  .pixel-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .pixel-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .pixel-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-accent);
+    border: 1px solid var(--color-border);
+  }
+
+  /* 技术网格 */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+  }
+
+  .pixel-tag {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    background-color: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+  }
+
+  .tech-name {
+    font-weight: 500;
+  }
+
+  /* 联系链接 */
+  .contact-links {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  /* 页面底部 */
+  .page-footer {
+    margin-top: var(--spacing-2xl);
+    text-align: center;
+  }
+
+  .pixel-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .divider-line {
+    width: 80px;
+    height: 2px;
+    background-color: var(--color-border);
+  }
+
+  .divider-char {
+    color: var(--color-accent);
+  }
+
+  .pixel-decoration-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  /* 响应式 */
+  @media (max-width: 768px) {
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .about-intro {
+      padding: var(--spacing-lg);
+    }
+
+    .about-intro h2 {
+      font-size: 1.5rem;
+    }
+
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

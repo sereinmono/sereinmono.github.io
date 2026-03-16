@@ -1,0 +1,218 @@
+/* ===================================
+   Neo-Brutalism 核心样式
+   克制版 - 直角、明显边框、简单阴影
+   =================================== */
+
+/* 基础卡片 */
+.nb-card {
+  background-color: var(--color-bg-primary);
+  border: var(--border-normal) solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.nb-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 强调卡片 */
+.nb-card-accent {
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
+  border: var(--border-normal) solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+/* 次要卡片 */
+.nb-card-secondary {
+  background-color: var(--color-bg-secondary);
+  border: var(--border-normal) solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 按钮基础 */
+.nb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  border: var(--border-normal) solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  text-decoration: none;
+}
+
+.nb-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--color-border);
+  border-bottom-color: var(--color-border);
+}
+
+.nb-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--color-border);
+}
+
+/* 主要按钮 */
+.nb-btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+.nb-btn-primary:hover {
+  background-color: var(--color-accent-hover);
+}
+
+/* 次要按钮 */
+.nb-btn-secondary {
+  background-color: var(--color-bg-secondary);
+}
+
+/* 轮廓按钮 */
+.nb-btn-outline {
+  background-color: transparent;
+  box-shadow: none;
+  border: var(--border-normal) solid var(--color-border);
+}
+
+.nb-btn-outline:hover {
+  background-color: var(--color-bg-secondary);
+  box-shadow: var(--shadow-sm);
+  transform: translate(-1px, -1px);
+}
+
+/* 标签 */
+.nb-tag {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+}
+
+.nb-tag-accent {
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+/* 输入框 */
+.nb-input {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  background-color: var(--color-bg-primary);
+  border: var(--border-normal) solid var(--color-border);
+  outline: none;
+  transition: box-shadow 0.15s ease;
+}
+
+.nb-input:focus {
+  box-shadow: var(--shadow-sm);
+}
+
+/* 分隔线 - Neo-Brutalism 风格 */
+.nb-divider {
+  display: flex;
+  align-items: center;
+  margin: var(--spacing-lg) 0;
+}
+
+.nb-divider::before,
+.nb-divider::after {
+  content: '';
+  flex: 1;
+  border-top: var(--border-normal) solid var(--color-border);
+}
+
+.nb-divider-text {
+  padding: 0 var(--spacing-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+}
+
+/* 不对称网格布局 */
+.nb-grid {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.nb-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.nb-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* 大卡片 */
+.nb-grid-item-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* 中等卡片 */
+.nb-grid-item-medium {
+  grid-column: span 2;
+}
+
+/* 响应式网格 */
+@media (max-width: 768px) {
+  .nb-grid-2,
+  .nb-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .nb-grid-item-large,
+  .nb-grid-item-medium {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+/* 阴影框 - 用于强调内容 */
+.nb-shadow-box {
+  position: relative;
+  background-color: var(--color-bg-primary);
+  border: var(--border-normal) solid var(--color-border);
+  padding: var(--spacing-md);
+}
+
+.nb-shadow-box::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  bottom: -4px;
+  background-color: var(--color-border);
+  z-index: -1;
+}
+
+/* 边框装饰 */
+.nb-border-decor {
+  position: relative;
+  border: var(--border-normal) solid var(--color-border);
+}
+
+.nb-border-decor::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border: 1px solid var(--color-border-light);
+  pointer-events: none;
+}

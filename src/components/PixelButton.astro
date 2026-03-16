@@ -1,0 +1,95 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  external?: boolean;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  external = false
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'pixel-btn--sm',
+  md: '',
+  lg: 'pixel-btn--lg'
+};
+---
+
+<a
+  href={href}
+  class:list={['pixel-btn', `pixel-btn--${variant}`, sizeClasses[size]]}
+  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+>
+  <slot />
+</a>
+
+<style>
+  .pixel-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    font-family: var(--font-pixel);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: var(--border-normal) solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    image-rendering: pixelated;
+  }
+
+  .pixel-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 var(--color-border);
+  }
+
+  .pixel-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--color-border);
+  }
+
+  /* 变体 */
+  .pixel-btn--primary {
+    background-color: var(--color-accent);
+    color: var(--color-bg-primary);
+  }
+
+  .pixel-btn--primary:hover {
+    background-color: var(--color-accent-hover);
+  }
+
+  .pixel-btn--secondary {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+  }
+
+  .pixel-btn--outline {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    box-shadow: none;
+  }
+
+  .pixel-btn--outline:hover {
+    background-color: var(--color-bg-secondary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* 尺寸 */
+  .pixel-btn--sm {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .pixel-btn--lg {
+    padding: 12px 24px;
+    font-size: 1.3rem;
+  }
+</style>
