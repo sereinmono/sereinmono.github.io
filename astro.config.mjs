@@ -1,4 +1,6 @@
 import { defineConfig } from 'astro/config';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 // GitHub Pages 部署配置
 // 将 'matchafrenchfriesblog' 替换为你的 GitHub 仓库名
@@ -9,5 +11,9 @@ export default defineConfig({
   output: 'static',
   build: {
     assets: 'assets'
+  },
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex]
   }
 });
