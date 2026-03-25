@@ -7,7 +7,7 @@ import rehypeKatex from 'rehype-katex';
 export default defineConfig({
   site: 'https://sereinmono.github.io',
   // 本地开发时注释下一行，部署到 GitHub Pages 时取消注释
-  // base: '/matchafrenchfriesblog',
+  base: '/',
   output: 'static',
   build: {
     assets: 'assets'
